@@ -12,7 +12,7 @@ type ContainerProps = {
 	children?: ReactNode
 }
 
-export const Container: React.FC<ContainerProps> = (props) => (
+const Container: React.FC<ContainerProps> = (props) => (
 	<Stack gap="4" width="full">
 		<Flex justifyContent="space-between" width="full">
 			<Heading fontWeight="bold" size="2xl">
@@ -60,4 +60,5 @@ export const Container: React.FC<ContainerProps> = (props) => (
 	</Stack>
 )
 
-export { type ContainerProps }
+export { Container, type ContainerProps }
+export default Container

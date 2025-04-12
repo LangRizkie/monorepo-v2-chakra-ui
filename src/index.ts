@@ -8,5 +8,6 @@ export { Container, type ContainerProps } from './components/container/Container
 export { Header, type HeaderProps } from './components/header/Header.component'
 export { Iconify, type IconifyProps } from './components/iconify/Iconify.component'
 export { Layout, type LayoutProps } from './components/layout/Layout.component'
+export { Search, type SearchProps } from './components/search/Search.component'
 export { Sidebar, type SidebarProps } from './components/sidebar/Sidebar.component'
 export { Tooltip, type TooltipProps } from './components/tooltip/Tooltip.component'

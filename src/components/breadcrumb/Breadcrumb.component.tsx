@@ -12,7 +12,7 @@ type BreadcrumbProps = ChakraBreadcrumb.RootProps & {
 	items: BreadcrumbItems[]
 }
 
-export const Breadcrumb = forwardRef<HTMLDivElement, BreadcrumbProps>(
+const Breadcrumb = forwardRef<HTMLDivElement, BreadcrumbProps>(
 	function BreadcrumbRoot(props, ref) {
 		const { gap, items, separator, ...rest } = props
 
@@ -40,4 +40,5 @@ export const Breadcrumb = forwardRef<HTMLDivElement, BreadcrumbProps>(
 	}
 )
 
-export { type BreadcrumbItems, type BreadcrumbProps }
+export { Breadcrumb, type BreadcrumbItems, type BreadcrumbProps }
+export default Breadcrumb

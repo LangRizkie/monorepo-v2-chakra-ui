@@ -10,7 +10,7 @@ type TooltipProps = ChakraTooltip.RootProps & {
 	disabled?: boolean
 }
 
-export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(function Tooltip(props, ref) {
+const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(function Tooltip(props, ref) {
 	const {
 		children,
 		content,
@@ -44,4 +44,5 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(function Tooltip
 	)
 })
 
-export { type TooltipProps }
+export { Tooltip, type TooltipProps }
+export default Tooltip

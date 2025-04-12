@@ -9,7 +9,7 @@ type SidebarProps = {
 	footer?: ReactNode
 }
 
-export const Sidebar: React.FC<SidebarProps> = (props) => {
+const Sidebar: React.FC<SidebarProps> = (props) => {
 	const [isOpen, setIsOpen] = useState<boolean>(props.isOpen)
 
 	const width = isOpen ? '64' : '20'
@@ -76,4 +76,5 @@ export const Sidebar: React.FC<SidebarProps> = (props) => {
 	)
 }
 
-export { type SidebarProps }
+export { Sidebar, type SidebarProps }
+export default Sidebar

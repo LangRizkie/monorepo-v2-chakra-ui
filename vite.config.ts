@@ -8,7 +8,7 @@ import tsconfigPaths from 'vite-tsconfig-paths'
 export default defineConfig({
 	build: {
 		lib: {
-			entry: path.resolve(__dirname, 'src/index.tsx'),
+			entry: path.resolve(__dirname, 'src/index.ts'),
 			fileName: (format) => `index.${format}.js`,
 			formats: ['es', 'cjs'],
 			name: 'regla-monorepo'

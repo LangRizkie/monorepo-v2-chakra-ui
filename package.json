@@ -1,6 +1,6 @@
 {
 	"name": "@regla/monorepo",
-	"version": "0.0.4",
+	"version": "0.0.7",
 	"type": "module",
 	"scripts": {
 		"themegen": "bunx @chakra-ui/cli typegen ./src/config/theme.ts",
@@ -51,6 +51,7 @@
 		"@storybook/react": "^8.6.12",
 		"@storybook/react-vite": "^8.6.12",
 		"@storybook/test": "^8.6.12",
+		"@types/lodash": "^4.17.16",
 		"@types/node": "^22.14.0",
 		"@types/react": "^19.0.10",
 		"@types/react-dom": "^19.0.4",

@@ -15,7 +15,7 @@ type LayoutProps = {
 	children?: ReactNode
 }
 
-export const Layout: React.FC<LayoutProps> = (props) => {
+const Layout: React.FC<LayoutProps> = (props) => {
 	const breadcrumb = useMemo(() => {
 		return props.breadcrumb ?? []
 	}, [props.breadcrumb])
@@ -53,4 +53,5 @@ export const Layout: React.FC<LayoutProps> = (props) => {
 	)
 }
 
-export { type LayoutProps }
+export { Layout, type LayoutProps }
+export default Layout

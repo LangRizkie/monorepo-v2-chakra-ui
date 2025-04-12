@@ -7,7 +7,7 @@ type HeaderProps = {
 	content?: ReactNode
 }
 
-export const Header: React.FC<HeaderProps> = (props) => {
+const Header: React.FC<HeaderProps> = (props) => {
 	return (
 		<Flex
 			as="header"
@@ -39,12 +39,11 @@ export const Header: React.FC<HeaderProps> = (props) => {
 						width="28px"
 					/>
 				</IconButton>
-				<Flex alignItems="center" gap="4">
-					{props.content}
-				</Flex>
+				{props.content}
 			</Flex>
 		</Flex>
 	)
 }
 
-export { type HeaderProps }
+export { Header, type HeaderProps }
+export default Header

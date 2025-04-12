@@ -4,7 +4,7 @@ import { forwardRef } from 'react'
 
 type IconifyProps = BoxProps & IconifyIconProps
 
-export const Iconify = forwardRef<IconifyIconHTMLElement, IconifyProps>((props, ref) => {
+const Iconify = forwardRef<IconifyIconHTMLElement, IconifyProps>((props, ref) => {
 	const height = props.height ? Number(props.height) / 4 : ''
 
 	return (
@@ -21,4 +21,5 @@ export const Iconify = forwardRef<IconifyIconHTMLElement, IconifyProps>((props, 
 
 Iconify.displayName = 'Iconify'
 
-export { type IconifyProps }
+export { Iconify, type IconifyProps }
+export default Iconify
