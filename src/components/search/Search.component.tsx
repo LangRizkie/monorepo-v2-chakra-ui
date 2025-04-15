@@ -1,29 +1,25 @@
 import { Card, Input, InputGroup, Portal, Presence, Stack } from '@chakra-ui/react'
 import { useBoolean, useDebounce, useDebounceEffect, useDebounceFn } from 'ahooks'
 import { isEmpty } from 'lodash'
-import { ReactNode, useEffect, useRef, useState } from 'react'
+import { ReactNode, useRef, useState } from 'react'
 import Iconify from '../iconify/Iconify.component'
 
 type SearchProps = {
 	defaultValue?: string
-	onValueDebounced?: (value: string) => void
+	onValueChange?: (value: string) => void
 	children: ReactNode
 }
 
-const Search: React.FC<SearchProps> = ({ children, defaultValue, onValueDebounced }) => {
+const Search: React.FC<SearchProps> = ({ children, defaultValue, onValueChange }) => {
 	const containerRef = useRef<HTMLDivElement>(null)
 
 	const [isOpen, { set, setFalse, setTrue }] = useBoolean(false)
-	const [search, setSearch] = useState<string>('')
+	const [search, setSearch] = useState<string>()
 
 	const debounced = useDebounce(search, { wait: 200 })
 	const { run } = useDebounceFn(() => setTrue(), { wait: 200 })
 
 	useDebounceEffect(() => set(!isEmpty(debounced)), [debounced], { wait: 200 })
-
-	useEffect(() => {
-		onValueDebounced?.(debounced)
-	}, [onValueDebounced, debounced, set])
 
 	return (
 		<Stack>
@@ -40,9 +36,13 @@ const Search: React.FC<SearchProps> = ({ children, defaultValue, onValueDebounce
 				onFocus={() => !isEmpty(search) && run()}
 			>
 				<Input
+					backgroundColor="bg"
 					defaultValue={defaultValue}
 					placeholder="Search..."
-					onChange={(e) => setSearch(e.target.value)}
+					onChange={(e) => {
+						setSearch(e.target.value)
+						onValueChange?.(e.target.value)
+					}}
 				/>
 			</InputGroup>
 			<Portal container={containerRef}>
@@ -55,7 +55,7 @@ const Search: React.FC<SearchProps> = ({ children, defaultValue, onValueDebounce
 						top="14"
 						width="full"
 					>
-						<Card.Body p="2">{children}</Card.Body>
+						<Card.Body p="0">{children}</Card.Body>
 					</Card.Root>
 				</Presence>
 			</Portal>

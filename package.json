@@ -1,6 +1,6 @@
 {
 	"name": "@regla/monorepo",
-	"version": "0.0.7",
+	"version": "0.1.1",
 	"type": "module",
 	"scripts": {
 		"themegen": "bunx @chakra-ui/cli typegen ./src/config/theme.ts",

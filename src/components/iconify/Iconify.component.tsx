@@ -1,21 +1,14 @@
-import { Box, type BoxProps } from '@chakra-ui/react'
+import { Icon as ChakraIcon, IconProps } from '@chakra-ui/react'
 import { Icon, type IconifyIconHTMLElement, type IconifyIconProps } from '@iconify-icon/react'
 import { forwardRef } from 'react'
 
-type IconifyProps = BoxProps & IconifyIconProps
+type IconifyProps = IconProps & IconifyIconProps
 
 const Iconify = forwardRef<IconifyIconHTMLElement, IconifyProps>((props, ref) => {
-	const height = props.height ? Number(props.height) / 4 : ''
-
 	return (
-		<Box
-			_dark={{ color: 'gray.300' }}
-			_light={{ color: 'gray.600' }}
-			{...props}
-			height={height}
-		>
+		<ChakraIcon {...props}>
 			<Icon ref={ref} {...props} />
-		</Box>
+		</ChakraIcon>
 	)
 })
 
