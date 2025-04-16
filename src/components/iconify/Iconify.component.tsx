@@ -1,18 +1,15 @@
 import { Icon as ChakraIcon, IconProps } from '@chakra-ui/react'
-import { Icon, type IconifyIconHTMLElement, type IconifyIconProps } from '@iconify-icon/react'
-import { forwardRef } from 'react'
+import { Icon, IconifyIconProps } from '@iconify-icon/react'
 
-type IconifyProps = IconProps & IconifyIconProps
+type IconifyProps = IconProps & Omit<IconifyIconProps, 'ref'>
 
-const Iconify = forwardRef<IconifyIconHTMLElement, IconifyProps>((props, ref) => {
+const Iconify: React.FC<IconifyProps> = (props) => {
 	return (
-		<ChakraIcon {...props}>
-			<Icon ref={ref} {...props} />
+		<ChakraIcon {...props} height="auto" width="auto">
+			<Icon {...props} />
 		</ChakraIcon>
 	)
-})
-
-Iconify.displayName = 'Iconify'
+}
 
 export { Iconify, type IconifyProps }
 export default Iconify
