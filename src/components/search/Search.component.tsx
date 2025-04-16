@@ -1,7 +1,7 @@
 import { Card, Input, InputGroup, Portal, Presence, Stack } from '@chakra-ui/react'
-import { useBoolean, useDebounce, useDebounceEffect, useDebounceFn } from 'ahooks'
+import { useBoolean, useClickAway, useDebounce, useDebounceEffect, useDebounceFn } from 'ahooks'
 import { isEmpty } from 'lodash'
-import { ReactNode, useRef, useState } from 'react'
+import { ReactNode, useEffect, useRef, useState } from 'react'
 import Iconify from '../iconify/Iconify.component'
 
 type SearchProps = {
@@ -12,14 +12,32 @@ type SearchProps = {
 
 const Search: React.FC<SearchProps> = ({ children, defaultValue, onValueChange }) => {
 	const containerRef = useRef<HTMLDivElement>(null)
+	const cardRef = useRef<HTMLDivElement>(null)
 
 	const [isOpen, { set, setFalse, setTrue }] = useBoolean(false)
-	const [search, setSearch] = useState<string>()
+	const [isFocus, { set: setFocus }] = useBoolean(false)
+	const [search, setSearch] = useState<string | undefined>(defaultValue)
+	const [width, setWidth] = useState<string>('64')
 
 	const debounced = useDebounce(search, { wait: 200 })
 	const { run } = useDebounceFn(() => setTrue(), { wait: 200 })
 
-	useDebounceEffect(() => set(!isEmpty(debounced)), [debounced], { wait: 200 })
+	useDebounceEffect(
+		() => {
+			if (isFocus) set(!isEmpty(debounced))
+		},
+		[debounced],
+		{ wait: 200 }
+	)
+
+	useClickAway(() => {
+		setFalse()
+		setFocus(false)
+	}, [containerRef, cardRef])
+
+	useEffect(() => {
+		setWidth(isEmpty(search) ? '64' : '96')
+	}, [search])
 
 	return (
 		<Stack>
@@ -31,13 +49,15 @@ const Search: React.FC<SearchProps> = ({ children, defaultValue, onValueChange }
 				transition="all"
 				transitionDuration="fast"
 				transitionTimingFunction="ease"
-				width="64"
-				onBlur={setFalse}
-				onFocus={() => !isEmpty(search) && run()}
+				width={width}
+				onFocus={() => {
+					setFocus(true)
+					if (!isEmpty(search)) run()
+				}}
 			>
 				<Input
 					backgroundColor="bg"
-					defaultValue={defaultValue}
+					defaultValue={search}
 					placeholder="Search..."
 					onChange={(e) => {
 						setSearch(e.target.value)
@@ -48,6 +68,7 @@ const Search: React.FC<SearchProps> = ({ children, defaultValue, onValueChange }
 			<Portal container={containerRef}>
 				<Presence present={isOpen}>
 					<Card.Root
+						ref={cardRef}
 						animationDuration="fast"
 						animationName="slide-from-top, fade-in"
 						left="0"

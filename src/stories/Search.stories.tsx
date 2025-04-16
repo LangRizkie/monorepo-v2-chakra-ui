@@ -6,7 +6,7 @@ const meta: Meta = {
 	args: {
 		children: <></>,
 		defaultValue: '',
-		onValueDebounced: fn()
+		onValueChange: fn()
 	},
 	component: Search,
 	tags: ['autodocs'],
@@ -19,7 +19,7 @@ export const Default: Story = {
 	args: {
 		children: <></>,
 		defaultValue: '',
-		onValueDebounced: fn()
+		onValueChange: fn()
 	}
 }
 
