@@ -1,7 +1,7 @@
 import { Flex, HStack, IconButton, Stack } from '@chakra-ui/react'
 import { ReactNode, useMemo } from 'react'
 import { Breadcrumb, BreadcrumbItems } from '../breadcrumb/Breadcrumb.component'
-import { Container, ContainerProps } from '../container/Container.component'
+import { ClosedContainer, ClosedContainerProps } from '../container/Container.component'
 import { Header, HeaderProps } from '../header/Header.component'
 import { Iconify } from '../iconify/Iconify.component'
 import { Sidebar, SidebarProps } from '../sidebar/Sidebar.component'
@@ -9,7 +9,7 @@ import { Sidebar, SidebarProps } from '../sidebar/Sidebar.component'
 type LayoutProps = {
 	sidebar: SidebarProps
 	header: HeaderProps
-	container: Omit<ContainerProps, 'children'>
+	container: Omit<ClosedContainerProps, 'children'>
 	breadcrumb?: BreadcrumbItems[]
 	modal?: ReactNode
 	children?: ReactNode
@@ -45,7 +45,7 @@ const Layout: React.FC<LayoutProps> = (props) => {
 							separator="/"
 						/>
 					</HStack>
-					<Container {...props.container}>{props.children}</Container>
+					<ClosedContainer {...props.container}>{props.children}</ClosedContainer>
 				</Stack>
 			</Flex>
 			{props.modal}

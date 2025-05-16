@@ -1,7 +1,7 @@
 import { Button, ButtonGroup, ButtonProps, Flex, Heading, Stack } from '@chakra-ui/react'
 import { ReactNode } from 'react'
 
-type ContainerProps = {
+type ClosedContainerProps = {
 	title: string
 	activate?: ButtonProps
 	deactivate?: ButtonProps
@@ -12,7 +12,7 @@ type ContainerProps = {
 	children?: ReactNode
 }
 
-const Container: React.FC<ContainerProps> = (props) => (
+const ClosedContainer: React.FC<ClosedContainerProps> = (props) => (
 	<Stack gap="4" width="full">
 		<Flex justifyContent="space-between" width="full">
 			<Heading fontWeight="bold" size="2xl">
@@ -60,5 +60,5 @@ const Container: React.FC<ContainerProps> = (props) => (
 	</Stack>
 )
 
-export { Container, type ContainerProps }
-export default Container
+export { ClosedContainer, type ClosedContainerProps }
+export default ClosedContainer
